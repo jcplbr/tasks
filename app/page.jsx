@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react"
 import InputArea from "./components/InputArea"
 import TaskList from "./components/TaskList"
+import Header from "./components/Header"
 
 export default function Home() {
+
   const [items, setItems] = useState([])
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function Home() {
     <div id="body-wrapper">
       <main>
         <div className="layout">
-          <h1>Tasks</h1>
+          <Header />
           <InputArea onSubmit={addItem} />
           <TaskList items={items} toggleItem={toggleItem} deleteItem={deleteItem} />
         </div>

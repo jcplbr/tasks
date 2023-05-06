@@ -37,10 +37,16 @@ main {
   justify-content: center;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
 h1 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 40px;
 }
 
 .layout {
@@ -52,6 +58,10 @@ hr {
   margin: 40px 0;
   border-color: #F2F2F2;
   border-style: solid;
+}
+
+[data-theme='dark'] hr {
+  border-color: #232323;
 }
 
 .new-task {
@@ -78,11 +88,25 @@ hr {
   scroll-padding-block: 12px;
 
   &:focus {
-    outline-color: #9EA6B5;
+    outline: 1px solid #9EA6B5;
   }
 
   &::placeholder {
     color: #798088;
+  }
+}
+
+[data-theme='dark'] .new-task textarea {
+  background: #1C1C1C;
+  border-color: hsla(0, 0, 100, 10%);
+  color: #E5E5E5;
+
+  &:focus {
+    outline: 1px solid hsla(0, 0, 100, 40%);
+  }
+
+  &::placeholder {
+    color: hsla(0, 0, 90, 40%);
   }
 }
 
@@ -99,12 +123,21 @@ hr {
   }
 
   &:focus {
-    outline-color: #9EA6B5;
+    outline: 1px solid #9EA6B5;
   }
 
   &[disabled] {
     opacity: .2;
     pointer-events: none;
+  }
+}
+
+[data-theme='dark'] .new-task .btn-add {
+  background-color: #E5E5E5;
+  color: #1C1C1C;
+
+  &:focus {
+    outline: 1px solid hsla(0, 0, 100, 40%);
   }
 }
 
@@ -144,6 +177,21 @@ hr {
   }
 }
 
+[data-theme='dark'] .tasklist > li {
+  background: hsla(0, 0, 100, 0%);
+
+  &:not(:last-child) > label {
+    box-shadow: 0 1px 0 #232323}
+
+  &:hover {
+    background: #232323
+  }
+
+  &:has(input:checked) {
+    color: hsla(0, 0, 100, 40%);
+  }
+}
+
 .tasklist > li > label {
   width: 100%;
   display: flex;
@@ -159,10 +207,89 @@ hr {
   display: flex;
   align-items: center;
   color: rgba(230, 27, 27, 1);
+  background: transparent;
   cursor: pointer;
 
   & > svg:hover {
     color: rgba(230, 27, 27, .8);
+  }
+}
+
+.tooltipContent {
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-color);
+  background-color: var(--background);
+  border: 1px solid #D1D3D8;
+  user-select: none;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+[data-theme='dark'] .tooltipContent {
+  border-color: hsla(0, 0, 100, 10%);
+}
+
+.tooltipContent[data-state='delayed-open'][data-side='top'] {
+  animation-name: slideDownAndFade;
+}
+
+.tooltipContent[data-state='delayed-open'][data-side='right'] {
+  animation-name: slideLeftAndFade;
+}
+
+.tooltipContent[data-state='delayed-open'][data-side='bottom'] {
+  animation-name: slideUpAndFade;
+}
+
+.tooltipContent[data-state='delayed-open'][data-side='left'] {
+  animation-name: slideRightAndFade;
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -181,7 +308,7 @@ input[type="checkbox"] {
   place-content: center;
 
   &:focus {
-    outline-color: #9EA6B5;
+    outline: 1px solid #9EA6B5;
   }
 
   &:hover {
@@ -196,5 +323,21 @@ input[type="checkbox"] {
 
   &:checked::before {
     content: url("../public/assets/check.svg");
+  }
+}
+
+[data-theme='dark'] input[type="checkbox"] {
+  border-color: hsla(0, 0, 100, 10%);
+
+  &:focus {
+    outline: 1px solid hsla(0, 0, 100, 40%);
+  }
+
+  &:hover {
+    border-color: hsla(0, 0, 100, 40%);
+  }
+
+  &:checked::before {
+    content: url("../public/assets/check-dark.svg");
   }
 }
