@@ -327,7 +327,8 @@ hr {
     }
 
     & .btn-delete {
-      opacity: 1;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -362,9 +363,7 @@ hr {
 .tasklist > li > label .btn-delete {
   border: none;
   margin-left: 20px;
-  opacity: 0;
-  display: flex;
-  align-items: center;
+  display: none;
   color: rgba(230, 27, 27, 1);
   background: transparent;
   cursor: pointer;
@@ -487,6 +486,7 @@ input[type="checkbox"] {
 
 [data-theme='dark'] input[type="checkbox"] {
   border-color: hsla(0, 0, 100, 10%);
+  box-shadow: 0 1px 2px rgba(255, 255, 255, .06);
 
   &:focus {
     outline: 1px solid hsla(0, 0, 100, 40%);
