@@ -15,7 +15,7 @@ export default function InputArea({ onSubmit }) {
     }
 
     function handleKeyDown(e) {
-        if (e.key === 'Enter') handleSubmit(e);
+        if (e.key === 'Enter') handleSubmit(e)
             
         if (e.key === '/') {
             e.preventDefault();
@@ -30,7 +30,7 @@ export default function InputArea({ onSubmit }) {
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [handleSubmit]);
 
     return (
         <form onSubmit={handleSubmit} className="new-task">
