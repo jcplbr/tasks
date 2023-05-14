@@ -50,6 +50,7 @@ h1 {
 }
 
 .btn-theme {
+  z-index: 1000;
   height: 35px;
   width: 35px;
   display: inline-flex;
@@ -106,6 +107,7 @@ h1 {
 }
 
 .dropdownContent {
+  z-index: 1000;
   border: 1px solid #D1D3D8;
   background: var(--background);
   border-radius: 6px;
@@ -224,6 +226,7 @@ hr {
 }
 
 .new-task {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -248,6 +251,10 @@ hr {
 
   &:focus {
     outline: 1px solid #9EA6B5;
+
+    & + kbd {
+      display: none;
+    }
   }
 
   &::placeholder {
@@ -325,11 +332,6 @@ hr {
     & label {
       box-shadow: unset;
     }
-
-    & .btn-delete {
-      display: flex;
-      align-items: center;
-    }
   }
 
   &:has(input:checked) {
@@ -363,7 +365,8 @@ hr {
 .tasklist > li > label .btn-delete {
   border: none;
   margin-left: 20px;
-  display: none;
+  display: flex;
+  align-items: center;
   color: rgba(230, 27, 27, 1);
   background: transparent;
   cursor: pointer;
@@ -499,4 +502,31 @@ input[type="checkbox"] {
   &:checked::before {
     content: url("../public/assets/check-dark.svg");
   }
+}
+
+@media (min-width: 640px) {
+  .new-task kbd {
+    pointer-events: none;
+    user-select: none;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: #798088;
+    border-radius: 4px;
+    background: var(--background);
+    box-shadow: inset 0 0 0 1px #D1D3D8;
+  }
+  
+  [data-theme='dark'] .new-task kbd {
+    box-shadow: inset 0 0 0 1px hsla(0, 0, 100, 10%);
+    color: hsla(0, 0, 90, 40%);
+  } 
 }

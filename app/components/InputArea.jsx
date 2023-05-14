@@ -15,14 +15,16 @@ export default function InputArea({ onSubmit }) {
     }
 
     function handleKeyDown(e) {
-        if (e.key === 'Enter') handleSubmit(e)
+        if (e.key === 'Enter' && !e.shiftKey) handleSubmit(e)
             
         if (e.key === '/') {
             e.preventDefault();
             textareaRef.current.focus();
         }
         
-        if (e.key === 'Escape') textareaRef.current.blur()
+        if (e.key === 'Escape') {
+            textareaRef.current.blur()
+        }
     }
 
     useEffect(() => {
@@ -35,6 +37,7 @@ export default function InputArea({ onSubmit }) {
     return (
         <form onSubmit={handleSubmit} className="new-task">
             <textarea ref={textareaRef} onChange={(e) => setItem(e.target.value)} value={item} rows={2} placeholder="Type something to do"></textarea>
+            <kbd aria-hidden="true">/</kbd>
             <button className="btn-add">Add new</button>
         </form>
     )
