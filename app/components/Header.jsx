@@ -6,7 +6,7 @@ export default function Header() {
     return(
         <header>
             <h1>Tasks</h1>
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px'}}>
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2px'}}>
                 <Link 
                     href="https://github.com/jcplbr/tasks"
                     target="_blank"
