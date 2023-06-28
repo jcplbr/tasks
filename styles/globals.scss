@@ -46,7 +46,7 @@ header {
 
 h1 {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-theme {
@@ -340,6 +340,7 @@ hr {
 
   &:has(input:checked) {
     color: #798088;
+    text-decoration: line-through;
   }
 }
 
@@ -355,6 +356,57 @@ hr {
 
   &:has(input:checked) {
     color: hsla(0, 0, 100, 40%);
+    text-decoration: line-through;
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--background);
+  border: 1px solid #D1D3D8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+
+  &:focus {
+    outline: 1px solid #9EA6B5;
+  }
+
+  &:hover {
+    border-color: #9EA6B5;
+  }
+
+  &::before {
+    content: "";
+    width: inherit;
+    text-align: center;
+  }
+
+  &:checked::before {
+    content: url("../public/assets/check.svg");
+  }
+}
+
+[data-theme='dark'] input[type="checkbox"] {
+  border-color: hsla(0, 0, 100, 10%);
+  // box-shadow: 0 1px 2px rgba(255, 255, 255, .06);
+
+  &:focus {
+    outline: 1px solid hsla(0, 0, 100, 40%);
+  }
+
+  &:hover {
+    border-color: hsla(0, 0, 100, 40%);
+  }
+
+  &:checked::before {
+    content: url("../public/assets/check-dark.svg");
   }
 }
 
@@ -402,40 +454,6 @@ hr {
   animation-name: slideDownAndFade;
 }
 
-.tooltipContent[data-state='delayed-open'][data-side='right'] {
-  animation-name: slideLeftAndFade;
-}
-
-.tooltipContent[data-state='delayed-open'][data-side='bottom'] {
-  animation-name: slideUpAndFade;
-}
-
-.tooltipContent[data-state='delayed-open'][data-side='left'] {
-  animation-name: slideRightAndFade;
-}
-
-@keyframes slideUpAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideRightAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes slideDownAndFade {
   from {
     opacity: 0;
@@ -444,67 +462,6 @@ hr {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slideLeftAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  background: var(--background);
-  border: 1px solid #D1D3D8;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
-  cursor: pointer;
-  display: grid;
-  place-content: center;
-
-  &:focus {
-    outline: 1px solid #9EA6B5;
-  }
-
-  &:hover {
-    border-color: #9EA6B5;
-  }
-
-  &::before {
-    content: "";
-    width: inherit;
-    text-align: center;
-  }
-
-  &:checked::before {
-    content: url("../public/assets/check.svg");
-  }
-}
-
-[data-theme='dark'] input[type="checkbox"] {
-  border-color: hsla(0, 0, 100, 10%);
-  box-shadow: 0 1px 2px rgba(255, 255, 255, .06);
-
-  &:focus {
-    outline: 1px solid hsla(0, 0, 100, 40%);
-  }
-
-  &:hover {
-    border-color: hsla(0, 0, 100, 40%);
-  }
-
-  &:checked::before {
-    content: url("../public/assets/check-dark.svg");
   }
 }
 

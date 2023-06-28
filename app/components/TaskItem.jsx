@@ -4,8 +4,8 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 export default function TaskItem({ id, checked, content, toggleItem, deleteItem }) {
     return (
         <li>
-            <input name="checkbox" type="checkbox" checked={checked} onChange={e => toggleItem(id, e.target.checked)} />
-            <label>
+            <input id={id} name="checkbox" type="checkbox" checked={checked} onChange={e => toggleItem(id, e.target.checked)} />
+            <label htmlFor={id}>
                 {content}
                     <Tooltip.Provider delayDuration={500}>
                         <Tooltip.Root>
@@ -15,7 +15,7 @@ export default function TaskItem({ id, checked, content, toggleItem, deleteItem 
                                 </button>
                             </Tooltip.Trigger>
                             <Tooltip.Portal>
-                                <Tooltip.Content className="tooltipContent">
+                                <Tooltip.Content sideOffset={5} className="tooltipContent">
                                     Delete item
                                 </Tooltip.Content>
                             </Tooltip.Portal>
